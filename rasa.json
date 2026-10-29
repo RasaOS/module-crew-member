@@ -1,0 +1,51 @@
+{
+  "$schema": "https://rasa-os.github.io/schema/rasa.schema.v1.json",
+  "contract_version": "1.4.0",
+  "name": "rasa.module.crew.member",
+  "version": "0.1.0",
+  "kind": "module",
+  "aliases": [
+    "module-crew-member"
+  ],
+  "description": "RasaOS Module · Crew Member: the member tier of a galt crew (galt ADR 0042, 0050, 0052): member cards, each a role a lead hires (scout, auditor, builder, tester, reviewer and the rest), plus the engineering standard every writer builds to.",
+  "source": {
+    "repo": "https://github.com/RasaOS/module-crew-member",
+    "branch": "main"
+  },
+  "tier": "Pro",
+  "capabilities": [
+    "crew.member-cards",
+    "crew.engineering-standard"
+  ],
+  "permissions": [],
+  "requires": {
+    "parent_kind": [
+      "domain",
+      "tenant"
+    ]
+  },
+  "rasa": {
+    "shape_pattern": "crew-tier",
+    "crew_tier": "member",
+    "family": "rasa.module.crew (the crew role registry); manager → lead → member",
+    "source": "galt origin/main 737a098; RasaOS/module-crew f6fea0d",
+    "note": "Snapshot of galt's built-in crew cards: galt still reads its in-code copies until it reads this Element (galt ADR 0064 Consequences: the base members move into Elements, roles.ts stays as the fallback)."
+  },
+  "element": {
+    "description": "Element-owned card files mirrored into the install target's .claude/crew/.",
+    "files": [
+      {
+        "from": "content/crew/members/",
+        "to": ".claude/crew/members/",
+        "policy": "directory-mirror",
+        "note": "The cards. galt finds .claude/crew/leads and .claude/crew/members as a repo's brain layer (crew/card-header.ts CARD_DIRS)."
+      },
+      {
+        "from": "content/crew/standards.md",
+        "to": ".claude/crew/standards.md",
+        "policy": "file-replace",
+        "note": "The base engineering standard (galt BASE_STANDARD)."
+      }
+    ]
+  }
+}

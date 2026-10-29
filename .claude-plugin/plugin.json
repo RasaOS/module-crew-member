@@ -1,0 +1,5 @@
+{
+  "name": "rasa-module-crew-member",
+  "version": "0.1.0",
+  "description": "RasaOS Module · Crew Member: the member tier of a galt crew (galt ADR 0042, 0050, 0052): member cards, each a role a lead hires (scout, auditor, builder, tester, reviewer and the rest), plus the engineering standard every writer builds to."
+}
